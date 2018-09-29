@@ -1,13 +1,21 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    public static void tinkerTailor(List<Integer> numberList, int k) {
-        for (int i = 0; i < numberList.size(); i++) {
-
+    public static void tinkerTailor(List<Integer> playerList, int rhyme) {
+        Iterator<Integer> iterator = playerList.iterator();
+        while(playerList.size() > 1){
+            for(int i = 1; i <= rhyme; i++){
+                if(!iterator.hasNext()){
+                    iterator = playerList.iterator();
+                }
+                iterator.next();
+                if(i == rhyme){
+                    iterator.remove();
+                }
+            }
         }
+        System.out.println(playerList.get(0));
     }
 
     public static void main(String[] args) {
@@ -18,8 +26,9 @@ public class Main {
         int rhyme = scanner.nextInt();
         List<Integer> playerList = new ArrayList<>();
         for (int i = 0; i < players; i++) {
-            playerList.add((i+1));
+            playerList.add((i + 1));
         }
+
         tinkerTailor(playerList, rhyme);
     }
 }
